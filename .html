@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I.A.GO Labs - Escala com IA em 90 Dias</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick-theme.min.css">
+    <style>
+        :root {
+            --primary-color: #00ff00;
+            --secondary-color: #00a86b;
+            --accent-color: #ffffff;
+            --dark-bg: #000000;
+            --light-bg: #111111;
+            --text-color: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--dark-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            max-width: 150px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, rgba(0,255,0,0.1), rgba(0,168,107,0.1));
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('https://source.unsplash.com/random/1920x1080?artificial,intelligence,robot') no-repeat center center/cover;
+            opacity: 0.2;
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: 'Orbitron', sans-serif;
+            color: var(--primary-color);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 15px 40px;
+            background-color: var(--primary-color);
+            color: var(--dark-bg);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Orbitron', sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-button:hover {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,255,0,0.2);
+        }
+
+        .cta-button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background-color: rgba(255,255,255,0.2);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .cta-button:active::after {
+            width: 300px;
+            height: 300px;
+        }
+
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 50px;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .problem-agitation-solution {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .pas-item {
+            background-color: var(--light-bg);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,255,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .pas-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,255,0,0.2);
+        }
+
+        .pas-item h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .social-proof {
+            background-color: var(--light-bg);
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-item {
+            background-color: rgba(255,255,255,0.05);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .testimonial-item q {
+            font-style: italic;
+            display: block;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .results {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin-top: 50px;
+        }
+
+        .result-item {
+            text-align: center;
+            margin: 20px;
+        }
+
+        .result-item .number {
+            font-size: 4rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .expert {
+            display: flex;
+            align-items: center;
+            background-color: var(--light-bg);
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,255,0,0.1);
+        }
+
+        .expert img {
+            width: 200px;
+            border-radius: 50%;
+            margin-right: 50px;
+            border: 5px solid var(--primary-color);
+        }
+
+        .expert-info h3 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 2rem;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--light-bg);
+            padding: 50px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,255,0,0.1);
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            background-color: rgba(255,255,255,0.05);
+            border: none;
+            border-bottom: 2px solid var(--primary-color);
+            color: var(--text-color);
+            font-size: 1rem;
+        }
+
+        .contact-form button {
+            background-color: var(--primary-color);
+            color: var(--dark-bg);
+            border: none;
+            padding: 15px 40px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .contact-form button:hover {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,255,0,0.2);
+        }
+
+        .whatsapp-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--primary-color);
+            color: var(--dark-bg);
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            text-align: center;
+            line-height: 60px;
+            font-size: 30px;
+            box-shadow: 0 5px 15px rgba(0,255,0,0.3);
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite;
+        }
+
+        .whatsapp-button:hover {
+            transform: scale(1.1) rotate(360deg);
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+        }
+
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(0,255,0, 0.7);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(0,255,0, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(0,255,0, 0);
+            }
+        }
+
+        footer {
+            background-color: var(--light-bg);
+            text-align: center;
+            padding: 30px 0;
+        }
+
+        .client-logos {
+            padding: 50px 0;
+            background-color: var(--light-bg);
+        }
+
+        .logo-slider {
+            margin: 0 auto;
+            max-width: 1000px;
+        }
+
+        .logo-slider img {
+            height: 100px;
+            margin: 0 20px;
+            filter: grayscale(100%) brightness(200%);
+            transition: all 0.3s ease;
+        }
+
+        .logo-slider img:hover {
+            filter: grayscale(0%) brightness(100%);
+        }
+
+        .popup {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.8);
+        }
+
+        .popup-content {
+            background-color: var(--light-bg);
+            margin: 10% auto;
+            padding: 40px;
+            border: 1px solid var(--primary-color);
+            width: 90%;
+            max-width: 600px;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .close {
+            color: var(--primary-color);
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .popup h2 {
+            color: var(--primary-color);
+            font-family: 'Orbitron', sans-serif;
+            margin-bottom: 20px;
+        }
+
+        .popup p {
+            margin-bottom: 20px;
+        }
+
+        .popup form input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: none;
+            border-bottom: 2px solid var(--primary-color);
+            background-color: rgba(255,255,255,0.1);
+            color: var(--text-color);
+        }
+
+        .popup form button {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--primary-color);
+            color: var(--dark-bg);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .popup form button:hover {
+            background-color: var(--accent-color);
+            color: var(--primary-color);
+        }
+
+        .faq {
+            background-color: var(--light-bg);
+            padding: 50px 0;
+        }
+
+        .faq-item {
+            margin-bottom: 20px;
+        }
+
+        .faq-question {
+            background-color: rgba(255,255,255,0.05);
+            padding: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            font-family: 'Orbitron', sans-serif;
+            color: var(--primary-color);
+        }
+
+        .faq-answer {
+            display: none;
+            padding: 15px;
+            background-color: rgba(255,255,255,0.02);
+        }
+
+        .tech-element {
+            position: absolute;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                left: -100%;
+                top: 5rem;
+                flex-direction: column;
+                background-color: var(--light-bg);
+                width: 100%;
+                text-align: center;
+                transition: 0.3s;
+                box-shadow: 0 10px 27px rgba(0, 255, 0, 0.05);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                margin: 2.5rem 0;
+            }
+
+            .hamburger {
+                display: block;
+                cursor: pointer;
+            }
+
+            .hamburger.active .bar:nth-child(2) {
+                opacity: 0;
+            }
+
+            .hamburger.active .bar:nth-child(1) {
+                transform: translateY(8px) rotate(45deg);
+            }
+
+            .hamburger.active .bar:nth-child(3) {
+                transform: translateY(-8px) rotate(-45deg);
+            }
+
+            .expert {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .expert img {
+                margin-right: 0;
+                margin-bottom: 30px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .pas-item {
+                padding: 30px;
+            }
+
+            .contact-form {
+                padding: 30px;
+            }
+        }
+
+        .hamburger {
+            display: none;
+        }
+
+        .bar {
+            display: block;
+            width: 25px;
+            height: 3px;
+            margin: 5px auto;
+            -webkit-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+            background-color: var(--primary-color);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <img src="https://i.imgur.com/1DkPuBJ.png" alt="I.A.GO Labs Logo" class="logo">
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">Sobre</a></li>
+                <li><a href="#services">Serviços</a></li>
+                <li><a href="#expert">Especialista</a></li>
+                <li><a href="blog.html">Conteúdo Inteligente</a></li>
+                <li><a href="#testimonials">Depoimentos</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#contact">Contato</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Escale sua Empresa com IA em 90 Dias</h1>
+            <p>Transforme seu negócio com soluções de Inteligência Artificial personalizadas e veja resultados em tempo recorde</p>
+            <a href="#contact" class="cta-button">Inicie sua Transformação Agora</a>
+        </div>
+        <img src="https://i.imgur.com/robot-icon.png" alt="Robot Icon" class="tech-element" style="top: 10%; left: 5%;">
+        <img src="https://i.imgur.com/brain-icon.png" alt="Brain Icon" class="tech-element" style="bottom: 15%; right: 10%;">
+    </section>
+
+    <section id="about" class="section">
+        <div class="container">
+            <h2 class="section-title">Por que I.A.GO Labs?</h2>
+            <div class="problem-agitation-solution">
+                <div class="pas-item">
+                    <h3>Inovação Acelerada</h3>
+                    <p>Em um mercado em constante evolução, a I.A.GO Labs oferece soluções de IA que mantêm sua empresa à frente da concorrência.</p>
+                </div>
+                <div class="pas-item">
+                    <h3>Resultados Comprovados</h3>
+                    <p>Nossos clientes experimentam um aumento médio de 300% em eficiência e produtividade em apenas 90 dias.</p>
+                </div>
+                <div class="pas-item">
+                    <h3>Expertise Inigualável</h3>
+                    <p>Com uma equipe de especialistas liderada por pioneiros em IA, oferecemos soluções verdadeiramente inovadoras e personalizadas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="section">
+        <div class="container">
+            <h2 class="section-title">Nossas Soluções de IA</h2>
+            <div class="problem-agitation-solution">
+                <div class="pas-item">
+                    <h3>Criação de Fluxo de Chatbots Inteligentes</h3>
+                    <p>Desenvolvemos chatbots avançados que melhoram o atendimento ao cliente e otimizam processos internos.</p>
+                </div>
+                <div class="pas-item">
+                    <h3>Assistentes e Agentes Autônomos de IA</h3>
+                    <p>Criamos assistentes virtuais personalizados que aumentam a produtividade e eficiência da sua equipe.</p>
+                </div>
+                <div class="pas-item">
+                    <h3>Criação de GPTs Personalizados</h3>
+                    <p>Desenvolvemos modelos de linguagem específicos para o seu negócio, potencializando suas operações.</p>
+                </div>
+                <div class="pas-item">
+                    <h3>Consultoria de IA</h3>
+                    <p>Oferecemos orientação estratégica para implementar IA de forma eficaz em sua empresa.</p>
+                </div>
+                <div class="pas-item">
+                    <h3>Treinamento Presencial na Empresa</h3>
+                    <p>Capacitamos sua equipe com conhecimentos práticos de IA, adaptados às necessidades do seu negócio.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="expert" class="section">
+        <div class="container">
+            <h2 class="section-title">Conheça Nosso Especialista</h2>
+            <div class="expert">
+                <img src="https://i.imgur.com/erWhUSY.jpg" alt="Brunão, Especialista em IA">
+                <div class="expert-info">
+                    <h3>Brunão</h3>
+                    <p>Com 5 anos de experiência no mercado digital, Brunão já ajudou dezenas de empresas com estratégias digitais inovadoras. Nos últimos 2 anos, seu foco tem sido 100% em soluções de IA, atendendo clientes renomados como Conrado Adolpho, CEO da Webliv.</p>
+                    <p>Formado pela maior escola de IA do Brasil, a Formação Lendária, Brunão já realizou mais de 30 implementações de IA em diversos segmentos, incluindo educação, estética, saúde, advocacia, varejo e embelezamento automotivo.</p>
+                    <p>Sua expertise abrange desde a criação de chatbots inteligentes até o desenvolvimento de GPTs personalizados, sempre buscando soluções que impulsionem o crescimento e a eficiência das empresas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="section social-proof">
+        <div class="container">
+            <h2 class="section-title">O que Nossos Clientes Dizem</h2>
+            <div class="testimonial-grid">
+                <div class="testimonial-item">
+                    <q>A I.A.GO Labs revolucionou nossa abordagem de negócios. Em apenas 3 meses, vimos um aumento de 250% em nossa eficiência operacional.</q>
+                    <p>- Maria Silva, CEO da TechInova</p>
+                </div>
+                <div class="testimonial-item">
+                    <q>As soluções de IA da I.A.GO Labs nos permitiram prever tendências de mercado com precisão incrível, dando-nos uma vantagem competitiva significativa.</q>
+                    <p>- João Santos, Diretor de Inovação da FutureCore</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="client-logos">
+        <div class="container">
+            <h2 class="section-title">Empresas que Confiam em Nós</h2>
+            <div class="logo-slider">
+                <div><img src="https://placehold.co/200x100?text=Cliente+1" alt="Cliente 1"></div>
+                <div><img src="https://placehold.co/200x100?text=Cliente+2" alt="Cliente 2"></div>
+                <div><img src="https://placehold.co/200x100?text=Cliente+3" alt="Cliente 3"></div>
+                <div><img src="https://placehold.co/200x100?text=Cliente+4" alt="Cliente 4"></div>
+                <div><img src="https://placehold.co/200x100?text=Cliente+5" alt="Cliente 5"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="section faq">
+        <div class="container">
+            <h2 class="section-title">Perguntas Frequentes</h2>
+            <div class="faq-item">
+                <div class="faq-question">Como a IA pode beneficiar minha empresa em apenas 90 dias?</div>
+                <div class="faq-answer">Nossa abordagem acelerada permite implementar soluções de IA rapidamente, focando em áreas de alto impacto para seu negócio. Em 90 dias, você pode ver melhorias significativas em eficiência, tomada de decisões e insights de mercado.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Que tipos de empresas podem se beneficiar das soluções da I.A.GO Labs?</div>
+                <div class="faq-answer">Nossas soluções são adaptáveis a empresas de diversos setores e tamanhos. Seja você uma startup em crescimento ou uma corporação estabelecida, podemos personalizar nossas soluções de IA para atender às suas necessidades específicas.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">Como começar com a I.A.GO Labs?</div>
+                <div class="faq-answer">O processo é simples. Entre em contato conosco através do formulário em nosso site ou pelo WhatsApp. Faremos uma avaliação inicial gratuita do seu negócio e apresentaremos um plano personalizado para implementação de IA em sua empresa.</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 class="section-title">Pronto para Escalar seu Negócio?</h2>
+            <form class="contact-form" id="main-contact-form">
+                <input type="text" placeholder="Seu Nome" required name="name">
+                <input type="email" placeholder="Seu E-mail Corporativo" required name="email">
+                <input type="tel" placeholder="Telefone para Contato (com DDD)" required name="phone">
+                <input type="text" placeholder="Nome da sua empresa" required name="company_name">
+                <input type="text" placeholder="Segmento da sua empresa" required name="company_segment">
+                <button type="submit">Solicitar Consultoria Gratuita</button>
+            </form>
+        </div>
+    </section>
+
+    <a href="#" class="whatsapp-button" id="whatsapp-button">
+        <i class="fas fa-robot"></i>
+    </a>
+
+    <div id="popup" class="popup">
+        <div class="popup-content">
+            <span class="close">&times;</span>
+            <h2>Desconto Exclusivo de 15%</h2>
+            <p>Preencha o formulário abaixo e receba um desconto especial em nossos serviços de IA. Transforme seu negócio agora!</p>
+            <form id="discount-form">
+                <input type="text" placeholder="Seu Nome" required name="name">
+                <input type="email" placeholder="Seu E-mail" required name="email">
+                <input type="tel" placeholder="Telefone para Contato (com DDD)" required name="phone">
+                <input type="text" placeholder="Nome da sua empresa" required name="company_name">
+                <input type="text" placeholder="Segmento da sua empresa" required name="company_segment">
+                <button type="submit">Obter Desconto</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 I.A.GO Labs - Escala com IA. Todos os direitos reservados.</p>
+            <div class="social-buttons">
+                <a href="#" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-linkedin"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+    <script>
+        // Menu responsivo
+        const hamburger = document.querySelector(".hamburger");
+        const navMenu = document.querySelector(".nav-links");
+
+        hamburger.addEventListener("click", () => {
+            hamburger.classList.toggle("active");
+            navMenu.classList.toggle("active");
+        });
+
+        document.querySelectorAll(".nav-links li").forEach(n => n.addEventListener("click", () => {
+            hamburger.classList.remove("active");
+            navMenu.classList.remove("active");
+        }));
+
+        // Rolagem suave
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Carrossel de logos dos clientes
+        $(document).ready(function(){
+            $('.logo-slider').slick({
+                slidesToShow: 5,
+                slidesToScroll: 1,
+                autoplay: true,
+                autoplaySpeed: 2000,
+                arrows: false,
+                dots: false,
+                pauseOnHover: false,
+                responsive: [{
+                    breakpoint: 768,
+                    settings: {
+                        slidesToShow: 3
+                    }
+                }, {
+                    breakpoint: 520,
+                    settings: {
+                        slidesToShow: 2
+                    }
+                }]
+            });
+        });
+
+        // Pop-up
+        window.onload = function() {
+            setTimeout(function() {
+                document.getElementById('popup').style.display = 'block';
+            }, 5000);
+        }
+
+        document.querySelector('.close').addEventListener('click', function() {
+            document.getElementById('popup').style.display = 'none';
+        });
+
+        // FAQ
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                answer.style.display = answer.style.display === 'block' ? 'none' : 'block';
+            });
+        });
+
+        // Função para redirecionar para o WhatsApp com uma mensagem personalizada
+        function redirectToWhatsApp(message) {
+            const phoneNumber = '5522999703799';
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+        }
+
+        // Função para lidar com o envio do formulário
+        function handleFormSubmit(event, formId) {
+            event.preventDefault();
+            const form = document.getElementById(formId);
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+
+            // Criar a mensagem personalizada
+            const message = `Oi, eu vim através do site da Iago Labs, e quero escalar meu negócio com IA. Meu nome é ${data.name}, nome da minha empresa é ${data.company_name}, sou do segmento ${data.company_segment}.`;
+
+            // Redirecionar para o WhatsApp
+            redirectToWhatsApp(message);
+
+            // Resetar o formulário
+            form.reset();
+        }
+
+        // Adicionar event listeners aos formulários
+        document.getElementById('main-contact-form').addEventListener('submit', (e) => handleFormSubmit(e, 'main-contact-form'));
+        document.getElementById('discount-form').addEventListener('submit', (e) => handleFormSubmit(e, 'discount-form'));
+
+        // Adicionar event listener ao botão flutuante do WhatsApp
+        document.querySelector('.whatsapp-button').addEventListener('click', (e) => {
+            e.preventDefault();
+            const message = "Oi, vim pelo botão do WhatsApp do site da Genial, gostaria de mais informações.";
+            redirectToWhatsApp(message);
+        });
+
+    </script>
+</body>
+</html>
